@@ -1,0 +1,15 @@
+@value colors: "../utilities/colors.module.css";
+@value light-stroke, dark-stroke from colors;
+
+.root {
+  font-size: 12px;
+}
+
+.pie {
+  outline: none;
+  stroke: light-stroke;
+}
+
+.dark .pie {
+  stroke: dark-stroke;
+}

@@ -1,0 +1,14 @@
+@value colors: "../utilities/colors.module.css";
+@value light-border, dark-border from colors;
+
+.root {
+  font-size: 12px;
+}
+
+.grid {
+  stroke: light-border;
+}
+
+.dark .grid {
+  stroke: dark-border;
+}

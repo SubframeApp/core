@@ -1,0 +1,13 @@
+/* Light */
+@value light-stroke: #FFFFFF;
+@value light-background: #FFFFFF;
+@value light-border: #E4E4E7;
+@value light-text: #3F3F46;
+@value light-text-secondary: #71717A;
+
+/* Dark */
+@value dark-stroke: #151718;
+@value dark-background: #151718;
+@value dark-border: #26292B;
+@value dark-text: #E4E4E7;
+@value dark-text-secondary: #9BA1A6;

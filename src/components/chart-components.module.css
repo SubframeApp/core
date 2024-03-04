@@ -1,0 +1,55 @@
+@value colors: "../utilities/colors.module.css";
+@value light-background, light-border, light-text, light-text-secondary, dark-background, dark-border, dark-text, dark-text-secondary from colors;
+
+.tooltip {
+  background-color: light-background;
+  border: 1px solid light-border;
+  border-radius: 4px;
+  color: light-text;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.tooltip.dark {
+  background-color: dark-background;
+  border-color: dark-border;
+  color: dark-text;
+}
+
+.legend {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  border-radius: 100%;
+  height: 8px;
+  width: 8px;
+}
+
+.name {
+  color: light-text-secondary;
+}
+
+.dark .name {
+  color: dark-text-secondary;
+}
+
+.value {
+  color: light-text;
+}
+
+.dark .value {
+  color: dark-text;
+}

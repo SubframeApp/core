@@ -1,0 +1,53 @@
+{
+  "name": "@subframe/core",
+  "version": "1.115.0",
+  "description": "",
+  "source": "src/index.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs",
+  "scripts": {
+    "build": "rm -rf dist/ && rollup -c --bundleConfigAsCjs",
+    "build:icons": "npx @svgr/cli --icon --typescript --filename-case kebab -d ./src/assets/icons/final ./src/assets/icons/raw --no-svgo",
+    "dev": "rollup -c --bundleConfigAsCjs --watch",
+    "minor-publish": "npm run build && npm version minor && npm publish --access public"
+  },
+  "author": "Irvin Zhan",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "postcss": "^8.4.21",
+    "rollup": "^4.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-preserve-directives": "^0.2.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.0.3",
+    "@radix-ui/react-collapsible": "^1.0.2",
+    "@radix-ui/react-dialog": "^1.0.3",
+    "@radix-ui/react-dropdown-menu": "^2.0.4",
+    "@radix-ui/react-hover-card": "^1.0.5",
+    "@radix-ui/react-popover": "^1.0.5",
+    "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-radio-group": "^1.1.2",
+    "@radix-ui/react-select": "^1.2.2",
+    "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.2",
+    "@radix-ui/react-toggle-group": "^1.0.4",
+    "@radix-ui/react-tooltip": "1.0.7",
+    "copy-to-clipboard": "^3.3.3",
+    "react-virtualized-auto-sizer": "^1.0.20",
+    "recharts": "^2.10.3",
+    "sonner": "^0.7.0",
+    "tailwind-merge": "^1.9.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  }
+}

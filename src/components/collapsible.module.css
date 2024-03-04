@@ -1,0 +1,39 @@
+.trigger {
+  user-select: none;
+}
+
+.chevron {
+  transition: transform 200ms ease-in-out;
+}
+
+.trigger[data-state="open"] .chevron {
+  transform: rotate(180deg);
+}
+
+.content {
+  overflow: hidden;
+}
+.content[data-state="open"] {
+  animation: slideDown 200ms ease-in-out;
+}
+.content[data-state="closed"] {
+  animation: slideUp 200ms ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

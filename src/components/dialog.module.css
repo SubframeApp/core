@@ -1,0 +1,12 @@
+/* HACK: NextJS does not always load stylesheets in a stable order; this ensures that no matter
+   which order these styles are loaded, this component has the lowest precedence. Thus this ensures adding a
+   Tailwind class will always override this style. */
+@layer {
+  .root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

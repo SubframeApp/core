@@ -1,0 +1,10 @@
+.thumb {
+  position: relative;
+  left: 0%;
+  transition: left cubic-bezier(0.4, 0, 0.2, 1) 120ms, transform cubic-bezier(0.4, 0, 0.2, 1) 120ms;
+}
+
+.thumb[data-state="checked"] {
+  left: 100%;
+  transform: translateX(-100%);
+}

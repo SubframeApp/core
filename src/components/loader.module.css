@@ -1,0 +1,30 @@
+/* HACK: NextJS does not always load stylesheets in a stable order; this ensures that no matter
+   which order these styles are loaded, this component has the lowest precedence. Thus this ensures adding a
+   Tailwind class will always override this style. */
+@layer {
+  .root {
+    display: inline-block;
+  }
+}
+
+/* Taken from https://metajunaid.github.io/SpinBolt/ */
+.root {
+  /* NOTE: color must be set by the caller */
+  height: 1em;
+  width: 1em;
+  position: relative;
+  border: 0.2em solid;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: rotate 1s linear infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
