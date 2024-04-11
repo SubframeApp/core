@@ -7,6 +7,9 @@
 .content {
   /* ensures width of select menu is at least as wide as the trigger */
   min-width: max(var(--radix-select-trigger-width), 128px);
+
+  /* ensures the select menu is not wider than the viewport */
+  max-height: var(--radix-select-content-available-height);
 }
 
 .trigger[data-placeholder] .value {
@@ -27,15 +30,4 @@
   The editor doesn't currently support "outline" WYSIWYG
   */
   outline: none;
-}
-
-/*
-This selectItemText container is a workaround with Radix RadixSelect.ItemText.
-In order to honor setting ItemText with raw text to satisfy Radix Select requirements,
-we include the element but hide it from view.
-*/
-.itemText {
-  visibility: hidden;
-  height: 0;
-  overflow: hidden;
 }

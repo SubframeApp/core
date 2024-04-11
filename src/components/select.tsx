@@ -32,6 +32,7 @@ export const Value = React.forwardRef<HTMLButtonElement, RadixSelect.SelectValue
   ref,
 ) {
   return (
+    // NOTE: this needs a wrapper since Radix strips all styling from RadixSelect.Value
     <span className={classNames(className, styles.value)} {...otherProps} ref={ref}>
       <RadixSelect.Value placeholder={placeholder} />
     </span>
@@ -79,15 +80,13 @@ export const Item = React.forwardRef<HTMLDivElement, RadixSelect.SelectItemProps
   ref,
 ) {
   return (
-    <RadixSelect.Item className={classNames(className, styles.item)} ref={ref} {...otherProps} value={value}>
+    <RadixSelect.Item className={classNames(className, styles.item)} ref={ref} value={value} {...otherProps}>
       {children}
-
-      <div className={styles.itemText}>
-        <RadixSelect.ItemText>{value}</RadixSelect.ItemText>
-      </div>
     </RadixSelect.Item>
   )
 })
+
+export const ItemText = RadixSelect.ItemText
 
 export const Select = {
   Root,
@@ -96,4 +95,5 @@ export const Select = {
   Content,
   Viewport,
   Item,
+  ItemText,
 }
