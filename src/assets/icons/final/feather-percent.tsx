@@ -1,5 +1,5 @@
 import * as React from "react"
-import { SVGProps } from "react"
+import type { SVGProps } from "react"
 const SvgFeatherPercent = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

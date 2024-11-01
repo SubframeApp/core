@@ -56,9 +56,7 @@ export const Content = React.forwardRef<HTMLDivElement, ContentProps>(function C
         sideOffset={sideOffset}
         {...otherProps}
       >
-        <Select.Viewport>
-          <RadixSelect.Group>{children}</RadixSelect.Group>
-        </Select.Viewport>
+        <Select.Viewport asChild>{children}</Select.Viewport>
       </RadixSelect.Content>
     </RadixSelect.Portal>
   )
