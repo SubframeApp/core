@@ -76,7 +76,13 @@ export const AreaChart = React.forwardRef<HTMLDivElement, Props>(function AreaCh
         {({ height, width }) => (
           <RechartsAreaChart className={classNames({ [styles.dark]: dark })} data={data} height={height} width={width}>
             <CartesianGrid className={styles.grid} horizontal={true} vertical={false} strokeWidth={1} />
-            <XAxis axisLine={false} tickLine={false} padding={{ left: 20, right: 20 }} dataKey={index} />
+            <XAxis
+              axisLine={false}
+              tickLine={false}
+              padding={{ left: 20, right: 20 }}
+              dataKey={index}
+              interval="equidistantPreserveStart"
+            />
             <YAxis axisLine={false} tickLine={false} width={30} />
             <Tooltip
               content={({ active, payload, label }) => (

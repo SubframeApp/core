@@ -13,16 +13,19 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   dark?: boolean
   data: Array<object>
   index: string
+  stacked?: boolean
 }
 
 export const BarChart = React.forwardRef<HTMLDivElement, Props>(function BarChart(
-  { className, categories, colors = DEFAULT_COLORS, dark, data, index, ...otherProps },
+  { className, categories, colors = DEFAULT_COLORS, dark, data, index, stacked, ...otherProps },
   ref,
 ) {
   const colorMap = createColorMap({ categories, colors })
   const bars = categories.map((category, index) => {
     const color = colors[index % colors.length]
-    return <Bar key={index} dataKey={category} fill={color} isAnimationActive={false} />
+    return (
+      <Bar key={index} dataKey={category} fill={color} stackId={stacked ? "a" : undefined} isAnimationActive={false} />
+    )
   })
 
   return (
@@ -36,7 +39,13 @@ export const BarChart = React.forwardRef<HTMLDivElement, Props>(function BarChar
         {({ height, width }) => (
           <RechartsBarChart className={classNames({ [styles.dark]: dark })} data={data} height={height} width={width}>
             <CartesianGrid className={styles.grid} horizontal={true} vertical={false} strokeWidth={1} />
-            <XAxis axisLine={false} tickLine={false} padding={{ left: 20, right: 20 }} dataKey={index} />
+            <XAxis
+              axisLine={false}
+              tickLine={false}
+              padding={{ left: 20, right: 20 }}
+              dataKey={index}
+              interval="equidistantPreserveStart"
+            />
             <YAxis axisLine={false} tickLine={false} width={30} />
             <Tooltip
               content={({ active, payload, label }) => (

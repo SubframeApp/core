@@ -1,5 +1,5 @@
 // direct re-exports of Radix
-export { RadioGroup, Checkbox, Popover, HoverCard, Tooltip, DropdownMenu } from "./components/radix"
+export { RadioGroup, Checkbox, Popover, HoverCard, Tooltip, DropdownMenu, ContextMenu } from "./components/radix"
 
 // direct re-exports of non-Radix libraries
 export { Toaster, toast } from "sonner"
@@ -12,6 +12,7 @@ export { AreaChart } from "./components/area-chart"
 export { BarChart } from "./components/bar-chart"
 export { LineChart } from "./components/line-chart"
 export { PieChart } from "./components/pie-chart"
+export { Calendar } from "./components/calendar"
 export { Skeleton } from "./components/skeleton"
 export * as CopyToClipboard from "./components/copy-to-clipboard"
 export * as Switch from "./components/switch"
