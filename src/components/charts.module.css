@@ -1,6 +1,18 @@
 @value colors: "../utilities/colors.module.css";
 @value light-background, light-border, light-text, light-text-secondary, dark-background, dark-border, dark-text, dark-text-secondary from colors;
 
+.root {
+  font-size: 12px;
+}
+
+.grid {
+  stroke: light-border;
+}
+
+.grid.dark {
+  stroke: dark-border;
+}
+
 .tooltip {
   background-color: light-background;
   border: 1px solid light-border;
@@ -22,7 +34,19 @@
   align-items: center;
   display: flex;
   gap: 8px;
-  margin-top: 8px;
+  margin-bottom: 16px;
+  justify-content: right;
+}
+
+.legend.left {
+  justify-content: left;
+}
+
+.legend.right {
+  justify-content: right;
+}
+
+.legend.center {
   justify-content: center;
 }
 

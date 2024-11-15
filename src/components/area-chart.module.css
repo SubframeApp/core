@@ -1,22 +1,10 @@
 @value colors: "../utilities/colors.module.css";
-@value light-background, light-border, dark-background, dark-border from colors;
-
-.root {
-  font-size: 12px;
-}
-
-.grid {
-  stroke: light-border;
-}
-
-.dark .grid {
-  stroke: dark-border;
-}
+@value light-background, dark-background from colors;
 
 .dot {
   stroke: light-background;
 }
 
-.dark .dot {
+.dot.dark {
   stroke: dark-background;
 }
