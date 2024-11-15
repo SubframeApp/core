@@ -2,10 +2,8 @@
 
 import classNames from "classnames"
 import React from "react"
-import AutoSizer from "react-virtualized-auto-sizer"
-import { Cell, Legend, Pie, PieChart as RechartsPieChart, Tooltip } from "recharts"
-import { ChartTooltip, createColorMap, DEFAULT_COLORS } from "./chart-components"
-import { ChartLegend } from "./chart-components"
+import { Cell, Pie, PieChart as RechartsPieChart } from "recharts"
+import { AutoSizedChartWrapper, ChartContextProvider, ChartLegend, ChartTooltip, DEFAULT_COLORS } from "./charts"
 import styles from "./pie-chart.module.css"
 
 interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -14,56 +12,59 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   dark?: boolean
   data: Array<Record<string, string | number>>
   index: string
+
+  tooltip?: React.ReactNode
+  legend?: React.ReactNode
+
+  // LineChart props
+  margin?: { top: number; right: number; bottom: number; left: number }
 }
 
-export const PieChart = React.forwardRef<HTMLDivElement, RootProps>(function PieChartRoot(
-  { className, category, colors = DEFAULT_COLORS, dark, data, index, ...otherProps },
+export const PieChart = React.forwardRef<HTMLDivElement, RootProps>(function PieChart(
+  {
+    className,
+    category,
+    colors = DEFAULT_COLORS,
+    dark,
+    data,
+    index,
+    tooltip = <ChartTooltip />,
+    legend = <ChartLegend />,
+    children = (
+      <Pie
+        className={classNames(styles.pie, { [styles.dark]: dark })}
+        data={data}
+        cx="50%"
+        cy="50%"
+        startAngle={90}
+        endAngle={-270}
+        innerRadius="75%"
+        isAnimationActive={false}
+        outerRadius="100%"
+        dataKey={category}
+        nameKey={index}
+      >
+        {data.map((_, index) => {
+          return <Cell key={index} fill={colors[index % colors.length]} />
+        })}
+      </Pie>
+    ),
+    margin,
+    ...otherProps
+  },
   ref,
 ) {
-  const colorMap = createColorMap({ categories: data.map((obj) => obj[index] as string), colors })
-  const cells = data.map((_, index) => {
-    const color = colors[index % colors.length]
-    return <Cell key={index} fill={color} />
-  })
-
   return (
-    <div
-      className={classNames(className, styles.root)}
-      ref={ref}
-      {...otherProps}
-      style={{ ...otherProps.style, minHeight: 200, minWidth: 300 }}
-    >
-      <AutoSizer>
+    <ChartContextProvider categories={data.map((obj) => obj[index] as string)} colors={colors} dark={dark}>
+      <AutoSizedChartWrapper ref={ref} {...otherProps}>
         {({ height, width }) => (
-          <RechartsPieChart className={classNames({ [styles.dark]: dark })} data={data} height={height} width={width}>
-            <Tooltip
-              content={({ active, payload, label }) => (
-                <ChartTooltip active={active} colorMap={colorMap} dark={dark} label={label} payload={payload} />
-              )}
-              isAnimationActive={false}
-            />
-            <Legend
-              content={({ payload }) => <ChartLegend colorMap={colorMap} dark={dark} payload={payload} />}
-              verticalAlign="bottom"
-            />
-            <Pie
-              className={styles.pie}
-              data={data}
-              cx="50%"
-              cy="50%"
-              startAngle={90}
-              endAngle={-270}
-              innerRadius="75%"
-              isAnimationActive={false}
-              outerRadius="100%"
-              dataKey={category}
-              nameKey={index}
-            >
-              {cells}
-            </Pie>
+          <RechartsPieChart data={data} height={height} width={width} margin={margin}>
+            {tooltip}
+            {legend}
+            {children}
           </RechartsPieChart>
         )}
-      </AutoSizer>
-    </div>
+      </AutoSizedChartWrapper>
+    </ChartContextProvider>
   )
 })

@@ -1,11 +1,17 @@
 "use client"
 
-import classNames from "classnames"
 import React from "react"
-import AutoSizer from "react-virtualized-auto-sizer"
-import { Bar, BarChart as RechartsBarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts"
-import styles from "./bar-chart.module.css"
-import { ChartLegend, ChartTooltip, createColorMap, DEFAULT_COLORS } from "./chart-components"
+import { Bar, BarChart as RechartsBarChart } from "recharts"
+import {
+  AutoSizedChartWrapper,
+  CartesianGrid,
+  ChartContextProvider,
+  ChartLegend,
+  ChartTooltip,
+  DEFAULT_COLORS,
+  XAxis,
+  YAxis,
+} from "./charts"
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   categories: string[]
@@ -14,54 +20,91 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   data: Array<object>
   index: string
   stacked?: boolean
+
+  // Slots
+  gridLines?: React.ReactNode
+  xAxis?: React.ReactNode
+  yAxis?: React.ReactNode
+  tooltip?: React.ReactNode
+  legend?: React.ReactNode
+
+  // BarChart props
+  layout?: "horizontal" | "vertical"
+  syncId?: number | string
+  margin?: { top: number; right: number; bottom: number; left: number }
+  barCategoryGap?: number | string
+  barGap?: number | string
+  barSize?: number | string
+  maxBarSize?: number
+  stackOffset?: "expand" | "none" | "wiggle" | "silhouette"
+  reverseStackOrder?: boolean
 }
 
 export const BarChart = React.forwardRef<HTMLDivElement, Props>(function BarChart(
-  { className, categories, colors = DEFAULT_COLORS, dark, data, index, stacked, ...otherProps },
+  {
+    categories,
+    colors = DEFAULT_COLORS,
+    dark,
+    data,
+    index,
+    stacked,
+    gridLines = <CartesianGrid />,
+    xAxis = <XAxis dataKey={index} />,
+    yAxis = <YAxis />,
+    tooltip = <ChartTooltip cursor={{ fill: "#D1D5DB", opacity: "0.15" }} />,
+    legend = <ChartLegend />,
+    children = categories.map((category, index) => {
+      const color = colors[index % colors.length]
+      return (
+        <Bar
+          key={index}
+          dataKey={category}
+          fill={color}
+          stackId={stacked ? "a" : undefined}
+          isAnimationActive={false}
+        />
+      )
+    }),
+    layout,
+    syncId,
+    margin,
+    barCategoryGap,
+    barGap,
+    barSize,
+    maxBarSize,
+    stackOffset,
+    reverseStackOrder,
+    ...otherProps
+  },
   ref,
 ) {
-  const colorMap = createColorMap({ categories, colors })
-  const bars = categories.map((category, index) => {
-    const color = colors[index % colors.length]
-    return (
-      <Bar key={index} dataKey={category} fill={color} stackId={stacked ? "a" : undefined} isAnimationActive={false} />
-    )
-  })
-
   return (
-    <div
-      className={classNames(className, styles.root)}
-      ref={ref}
-      {...otherProps}
-      style={{ ...otherProps.style, minHeight: 200, minWidth: 300 }}
-    >
-      <AutoSizer>
+    <ChartContextProvider categories={categories} colors={colors} dark={dark}>
+      <AutoSizedChartWrapper ref={ref} {...otherProps}>
         {({ height, width }) => (
-          <RechartsBarChart className={classNames({ [styles.dark]: dark })} data={data} height={height} width={width}>
-            <CartesianGrid className={styles.grid} horizontal={true} vertical={false} strokeWidth={1} />
-            <XAxis
-              axisLine={false}
-              tickLine={false}
-              padding={{ left: 20, right: 20 }}
-              dataKey={index}
-              interval="equidistantPreserveStart"
-            />
-            <YAxis axisLine={false} tickLine={false} width={30} />
-            <Tooltip
-              content={({ active, payload, label }) => (
-                <ChartTooltip active={active} colorMap={colorMap} dark={dark} label={label} payload={payload} />
-              )}
-              cursor={{ fill: "#D1D5DB", opacity: "0.15" }}
-              isAnimationActive={false}
-            />
-            <Legend
-              content={({ payload }) => <ChartLegend colorMap={colorMap} dark={dark} payload={payload} />}
-              verticalAlign="bottom"
-            />
-            {bars}
+          <RechartsBarChart
+            data={data}
+            height={height}
+            width={width}
+            layout={layout}
+            syncId={syncId}
+            margin={margin}
+            barCategoryGap={barCategoryGap}
+            barGap={barGap}
+            barSize={barSize}
+            maxBarSize={maxBarSize}
+            stackOffset={stackOffset}
+            reverseStackOrder={reverseStackOrder}
+          >
+            {gridLines}
+            {xAxis}
+            {yAxis}
+            {tooltip}
+            {legend}
+            {children}
           </RechartsBarChart>
         )}
-      </AutoSizer>
-    </div>
+      </AutoSizedChartWrapper>
+    </ChartContextProvider>
   )
 })
