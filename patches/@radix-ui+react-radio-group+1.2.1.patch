@@ -1,5 +1,5 @@
 diff --git a/node_modules/@radix-ui/react-radio-group/dist/index.d.ts b/node_modules/@radix-ui/react-radio-group/dist/index.d.ts
-index 466f8bb..9246671 100644
+index 466f8bb..6bf4656 100644
 --- a/node_modules/@radix-ui/react-radio-group/dist/index.d.ts
 +++ b/node_modules/@radix-ui/react-radio-group/dist/index.d.ts
 @@ -1,17 +1,7 @@
@@ -17,7 +17,7 @@ index 466f8bb..9246671 100644
 -    scopeName: string;
 -    (): ScopeHook;
 -}
-+import type { CreateScope } from '@radix-ui/react-context';
++import { CreateScope } from '@radix-ui/react-create-scope';
  
  type PrimitiveButtonProps = React.ComponentPropsWithoutRef<typeof Primitive.button>;
  interface RadioProps$1 extends PrimitiveButtonProps {

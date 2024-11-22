@@ -5,9 +5,7 @@ import esbuild from "rollup-plugin-esbuild";
 import { resolve } from "node:path";
 import { readFileSync } from "node:fs";
 
-const pkg = JSON.parse(
-  readFileSync(resolve(process.cwd(), "package.json"), "utf-8")
-);
+const pkg = JSON.parse(readFileSync(resolve("package.json"), "utf-8"));
 
 /** @type {import("rollup").InputOptions} */
 const sharedConfig = {
@@ -19,7 +17,7 @@ const sharedConfig = {
 export default [
   {
     input: "src/index.ts",
-    external: Object.keys(pkg.dependencies),
+    external: Object.keys(pkg.dependencies ?? {}),
     plugins: [
       peerDepsExternal(),
       postcss({
