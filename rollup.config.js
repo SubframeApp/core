@@ -2,6 +2,12 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 import preserveDirectives from "rollup-plugin-preserve-directives";
 import esbuild from "rollup-plugin-esbuild";
+import { resolve } from "node:path";
+import { readFileSync } from "node:fs";
+
+const pkg = JSON.parse(
+  readFileSync(resolve(process.cwd(), "package.json"), "utf-8")
+);
 
 /** @type {import("rollup").InputOptions} */
 const sharedConfig = {
@@ -13,7 +19,7 @@ const sharedConfig = {
 export default [
   {
     input: "src/index.ts",
-    external: [/node_modules/],
+    external: Object.keys(pkg.dependencies),
     plugins: [
       peerDepsExternal(),
       postcss({

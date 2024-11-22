@@ -1,0 +1,23 @@
+diff --git a/node_modules/@radix-ui/react-radio-group/dist/index.d.ts b/node_modules/@radix-ui/react-radio-group/dist/index.d.ts
+index 466f8bb..9246671 100644
+--- a/node_modules/@radix-ui/react-radio-group/dist/index.d.ts
++++ b/node_modules/@radix-ui/react-radio-group/dist/index.d.ts
+@@ -1,17 +1,7 @@
+ import * as React from 'react';
+ import { Primitive } from '@radix-ui/react-primitive';
+ import * as RovingFocusGroup from '@radix-ui/react-roving-focus';
+-
+-type Scope<C = any> = {
+-    [scopeName: string]: React.Context<C>[];
+-} | undefined;
+-type ScopeHook = (scope: Scope) => {
+-    [__scopeProp: string]: Scope;
+-};
+-interface CreateScope {
+-    scopeName: string;
+-    (): ScopeHook;
+-}
++import type { CreateScope } from '@radix-ui/react-context';
+ 
+ type PrimitiveButtonProps = React.ComponentPropsWithoutRef<typeof Primitive.button>;
+ interface RadioProps$1 extends PrimitiveButtonProps {
