@@ -1,41 +1,56 @@
-"use client"
+"use client";
 
-import classNames from "classnames"
-import React from "react"
-import * as Icons from "../assets/icons/final"
-import styles from "./icon.module.css"
+import classNames from "classnames";
+import React, { ReactNode, useEffect, useState } from "react";
+import styles from "./icon.module.css";
+import { icons } from "../assets/icons/final";
+import { loadIcon } from "../lib/load-icon";
 
 // If empty, then renders as an empty icon, but takes up the same amount of space
 // If null, then does not render anything.
-export type IconName = keyof typeof Icons | "empty" | null
+export type IconName = keyof typeof icons | "empty" | null;
 
 interface Props extends React.HTMLAttributes<HTMLSpanElement> {
-  name: IconName
+  name: IconName;
 }
 
-export const Icon = React.forwardRef<HTMLSpanElement, Props>(function Icon(props, ref) {
-  const { className, name, ...otherProps } = props
+const IconFallback = () => <svg width="1em" height="1em"></svg>;
 
-  if (name === null) {
-    return null
-  }
+export const Icon = React.forwardRef<HTMLSpanElement, Props>(function Icon(
+  props,
+  ref
+) {
+  const [icon, setIcon] = useState<ReactNode | null>(<IconFallback />);
+  const { className, name, ...otherProps } = props;
 
-  let children
-  if (name === "empty") {
-    children = <svg width="1em" height="1em"></svg>
-  } else {
-    const Component = Icons[name]
-    // TODO warn?
-    if (!Component) {
-      console.warn(`Icon rendered with invalid name: ${name}`)
-      return null
+  async function getChildren(name: IconName) {
+    if (name === "empty") {
+      return <IconFallback />;
+    } else if (name === null) {
+      return null;
+    } else {
+      const Component = await loadIcon(name);
+      if (!Component) {
+        console.warn(`Icon rendered with invalid name: ${String(name)}`);
+        return null;
+      }
+      return <Component />;
     }
-    children = <Component />
   }
 
-  return (
-    <span className={classNames(className, styles.root)} ref={ref} {...otherProps}>
-      {children}
+  useEffect(() => {
+    if (name) {
+      getChildren(name).then((children) => setIcon(children));
+    }
+  }, [name]);
+
+  return name === null ? null : (
+    <span
+      className={classNames(className, styles.root)}
+      ref={ref}
+      {...otherProps}
+    >
+      {icon}
     </span>
-  )
-})
+  );
+});
