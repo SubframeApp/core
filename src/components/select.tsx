@@ -58,18 +58,11 @@ interface ContentProps extends RadixSelect.SelectContentProps {
 
 export const Content = React.forwardRef<HTMLDivElement, ContentProps>(
   function Content(
-    {
-      className,
-      children,
-      portalClassName,
-      position = "popper",
-      sideOffset = 4,
-      ...otherProps
-    },
+    { className, children, position = "popper", sideOffset = 4, ...otherProps },
     ref
   ) {
     return (
-      <RadixSelect.Portal className={portalClassName}>
+      <RadixSelect.Portal>
         <RadixSelect.Content
           className={classNames(className, styles.content)}
           ref={ref}

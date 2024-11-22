@@ -1,0 +1,23 @@
+diff --git a/node_modules/@radix-ui/react-hover-card/dist/index.d.ts b/node_modules/@radix-ui/react-hover-card/dist/index.d.ts
+index 6d93117..39e8747 100644
+--- a/node_modules/@radix-ui/react-hover-card/dist/index.d.ts
++++ b/node_modules/@radix-ui/react-hover-card/dist/index.d.ts
+@@ -3,17 +3,7 @@ import * as PopperPrimitive from '@radix-ui/react-popper';
+ import { Portal as Portal$1 } from '@radix-ui/react-portal';
+ import { Primitive } from '@radix-ui/react-primitive';
+ import { DismissableLayer } from '@radix-ui/react-dismissable-layer';
+-
+-type Scope<C = any> = {
+-    [scopeName: string]: React.Context<C>[];
+-} | undefined;
+-type ScopeHook = (scope: Scope) => {
+-    [__scopeProp: string]: Scope;
+-};
+-interface CreateScope {
+-    scopeName: string;
+-    (): ScopeHook;
+-}
++import type { CreateScope } from '@radix-ui/react-context';
+ 
+ declare const createHoverCardScope: CreateScope;
+ interface HoverCardProps {

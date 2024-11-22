@@ -1,0 +1,23 @@
+diff --git a/node_modules/@radix-ui/react-popover/dist/index.d.ts b/node_modules/@radix-ui/react-popover/dist/index.d.ts
+index d5d1b72..35f8417 100644
+--- a/node_modules/@radix-ui/react-popover/dist/index.d.ts
++++ b/node_modules/@radix-ui/react-popover/dist/index.d.ts
+@@ -4,17 +4,7 @@ import { FocusScope } from '@radix-ui/react-focus-scope';
+ import * as PopperPrimitive from '@radix-ui/react-popper';
+ import { Portal as Portal$1 } from '@radix-ui/react-portal';
+ import { Primitive } from '@radix-ui/react-primitive';
+-
+-type Scope<C = any> = {
+-    [scopeName: string]: React.Context<C>[];
+-} | undefined;
+-type ScopeHook = (scope: Scope) => {
+-    [__scopeProp: string]: Scope;
+-};
+-interface CreateScope {
+-    scopeName: string;
+-    (): ScopeHook;
+-}
++import type { CreateScope } from '@radix-ui/react-context';
+ 
+ declare const createPopoverScope: CreateScope;
+ interface PopoverProps {
