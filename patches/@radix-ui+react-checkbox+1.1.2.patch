@@ -1,5 +1,5 @@
 diff --git a/node_modules/@radix-ui/react-checkbox/dist/index.d.ts b/node_modules/@radix-ui/react-checkbox/dist/index.d.ts
-index 01e1035..ef11737 100644
+index 01e1035..5d21a14 100644
 --- a/node_modules/@radix-ui/react-checkbox/dist/index.d.ts
 +++ b/node_modules/@radix-ui/react-checkbox/dist/index.d.ts
 @@ -1,16 +1,6 @@
@@ -16,7 +16,7 @@ index 01e1035..ef11737 100644
 -    scopeName: string;
 -    (): ScopeHook;
 -}
-+import type { CreateScope } from '@radix-ui/react-context';
++import type { CreateScope } from '@radix-ui/react-create-scope';
  
  declare const createCheckboxScope: CreateScope;
  type CheckedState = boolean | 'indeterminate';
