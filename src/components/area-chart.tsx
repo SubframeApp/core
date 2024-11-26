@@ -21,6 +21,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   dark?: boolean
   data: Array<object>
   index: string
+  stacked?: boolean
 
   // Slots
   gridLines?: React.ReactNode
@@ -43,59 +44,58 @@ export const AreaChart = React.forwardRef<HTMLDivElement, Props>(function AreaCh
     dark,
     data,
     index,
+    stacked,
     gridLines = <CartesianGrid />,
     xAxis = <XAxis dataKey={index} />,
     yAxis = <YAxis />,
     tooltip = <ChartTooltip />,
     legend = <ChartLegend />,
-    children = (
-      <>
-        {categories.map((category, index) => {
-          const color = colors[index % colors.length]
-          return (
-            <defs key={category}>
-              <linearGradient style={{ color }} id={color} x1="0" x2="0" y1="0" y2="1">
-                <stop offset="5%" stopColor="currentColor" stopOpacity={0.7} />
-                <stop offset="98%" stopColor="currentColor" stopOpacity={0.1} />
-              </linearGradient>
-            </defs>
-          )
-        })}
-        {categories.map((category, index) => {
-          const color = colors[index % colors.length]
-          return (
-            <Area
-              key={index}
-              type="monotone"
-              activeDot={(props: DotProps) => {
-                const { cx, cy, stroke, strokeLinecap, strokeLinejoin, strokeWidth } = props
-                return (
-                  <Dot
-                    className={classNames(styles.dot, { [styles.dark]: dark })}
-                    cx={cx}
-                    cy={cy}
-                    r={5}
-                    fill={color}
-                    stroke={stroke}
-                    strokeLinecap={strokeLinecap}
-                    strokeLinejoin={strokeLinejoin}
-                    strokeWidth={strokeWidth}
-                  />
-                )
-              }}
-              dataKey={category}
-              fill={`url(#${color})`}
-              isAnimationActive={false}
-              stackId="a"
-              stroke={color}
-              strokeLinejoin={"round"}
-              strokeLinecap={"round"}
-              strokeWidth={2}
-            />
-          )
-        })}
-      </>
-    ),
+    children = [
+      ...categories.map((category, index) => {
+        const color = colors[index % colors.length]
+        return (
+          <defs key={category}>
+            <linearGradient style={{ color }} id={color} x1="0" x2="0" y1="0" y2="1">
+              <stop offset="5%" stopColor="currentColor" stopOpacity={0.7} />
+              <stop offset="98%" stopColor="currentColor" stopOpacity={0.1} />
+            </linearGradient>
+          </defs>
+        )
+      }),
+      ...categories.map((category, index) => {
+        const color = colors[index % colors.length]
+        return (
+          <Area
+            key={index}
+            type="monotone"
+            activeDot={(props: DotProps) => {
+              const { cx, cy, stroke, strokeLinecap, strokeLinejoin, strokeWidth } = props
+              return (
+                <Dot
+                  className={classNames(styles.dot, { [styles.dark]: dark })}
+                  cx={cx}
+                  cy={cy}
+                  r={5}
+                  fill={color}
+                  stroke={stroke}
+                  strokeLinecap={strokeLinecap}
+                  strokeLinejoin={strokeLinejoin}
+                  strokeWidth={strokeWidth}
+                />
+              )
+            }}
+            dataKey={category}
+            fill={`url(#${color})`}
+            isAnimationActive={false}
+            stackId={stacked ? "a" : undefined}
+            stroke={color}
+            strokeLinejoin={"round"}
+            strokeLinecap={"round"}
+            strokeWidth={2}
+          />
+        )
+      }),
+    ],
     layout,
     syncId,
     margin,

@@ -16,4 +16,3 @@ export const PopoverTrigger = RadixPopover.PopoverTrigger
 export const Portal = RadixPopover.Portal
 export const Root = RadixPopover.Root
 export const Trigger = RadixPopover.Trigger
-export const createPopoverScope = RadixPopover.createPopoverScope

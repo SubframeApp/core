@@ -14,4 +14,3 @@ export const Content = RadixTooltip.Content
 export const Portal = RadixTooltip.Portal
 export const Provider = RadixTooltip.Provider
 export const Trigger = RadixTooltip.Trigger
-export const createTooltipScope = RadixTooltip.createTooltipScope
