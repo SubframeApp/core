@@ -34,4 +34,3 @@ export const Sub = RadixDropdownMenu.Sub
 export const SubContent = RadixDropdownMenu.SubContent
 export const SubTrigger = RadixDropdownMenu.SubTrigger
 export const Trigger = RadixDropdownMenu.Trigger
-export const createDropdownMenuScope = RadixDropdownMenu.createDropdownMenuScope

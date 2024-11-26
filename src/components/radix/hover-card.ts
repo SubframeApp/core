@@ -12,4 +12,3 @@ export const HoverCardTrigger = RadixHoverCard.HoverCardTrigger
 export const Portal = RadixHoverCard.Portal
 export const Root = RadixHoverCard.Root
 export const Trigger = RadixHoverCard.Trigger
-export const createHoverCardScope = RadixHoverCard.createHoverCardScope

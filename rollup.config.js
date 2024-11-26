@@ -8,7 +8,7 @@ import typescript from "rollup-plugin-typescript2"
 /** @type {import("rollup").InputOptions} */
 
 const sharedConfig = {
-  sourcemap: true,
+  sourcemap: process.env.NODE_ENV === "development",
   preserveModules: true,
   // taken from https://github.com/rollup/rollup/issues/3684#issuecomment-1535836196
   // ensures that node_modules is properly preserved / bundled

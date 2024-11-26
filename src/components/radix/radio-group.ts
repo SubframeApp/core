@@ -8,4 +8,3 @@ export const Indicator = RadixRadioGroup.Indicator
 export const RadioGroup = RadixRadioGroup.RadioGroup
 export const RadioGroupItem = RadixRadioGroup.RadioGroupItem
 export const RadioGroupIndicator = RadixRadioGroup.RadioGroupIndicator
-export const createRadioGroupScope = RadixRadioGroup.createRadioGroupScope

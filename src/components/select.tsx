@@ -39,16 +39,12 @@ export const Value = React.forwardRef<HTMLButtonElement, RadixSelect.SelectValue
   )
 })
 
-interface ContentProps extends RadixSelect.SelectContentProps {
-  portalClassName?: string
-}
-
-export const Content = React.forwardRef<HTMLDivElement, ContentProps>(function Content(
-  { className, children, portalClassName, position = "popper", sideOffset = 4, ...otherProps },
+export const Content = React.forwardRef<HTMLDivElement, RadixSelect.SelectContentProps>(function Content(
+  { className, children, position = "popper", sideOffset = 4, ...otherProps },
   ref,
 ) {
   return (
-    <RadixSelect.Portal className={portalClassName}>
+    <RadixSelect.Portal>
       <RadixSelect.Content
         className={classNames(className, styles.content)}
         ref={ref}
