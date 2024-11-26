@@ -15,7 +15,7 @@ export const Chevron = React.forwardRef<HTMLElement, ChevronProps>(function Coll
 })
 
 export const Trigger = React.forwardRef<HTMLButtonElement, RadixCollapsible.CollapsibleTriggerProps>(function Trigger(
-  { className, children, placeholder, ...otherProps },
+  { className, children, ...otherProps },
   ref,
 ) {
   return (

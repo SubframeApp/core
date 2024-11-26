@@ -12,7 +12,7 @@ export const Root = React.forwardRef<HTMLDivElement, RootProps>(function SelectR
 })
 
 export const Trigger = React.forwardRef<HTMLButtonElement, RadixSelect.SelectTriggerProps>(function Trigger(
-  { className, children, placeholder, ...otherProps },
+  { className, children, ...otherProps },
   ref,
 ) {
   return (
