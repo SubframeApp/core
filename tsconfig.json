@@ -23,5 +23,5 @@
     "noUnusedParameters": false,
     "preserveWatchOutput": true
   },
-  "include": ["src", "api"]
+  "include": ["src"]
 }
