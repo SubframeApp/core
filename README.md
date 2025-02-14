@@ -16,3 +16,4 @@
 ## Packages
 
 - `@subframe/core`: a lightweight wrapper around Radix's headless components. Used by the Subframe design system.
+- `@subframe/cli`: a CLI tool for syncing your Subframe project with your codebase.
