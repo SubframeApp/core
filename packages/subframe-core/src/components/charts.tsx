@@ -109,8 +109,8 @@ export const CartesianGrid = ({
 }
 CartesianGrid.displayName = RechartsCartesianGrid.displayName
 
-export const XAxis = ({ ref, ...otherProps }: XAxisProps) => {
-  return <RechartsXAxis ref={ref as any} {...otherProps} />
+export const XAxis = (props: XAxisProps) => {
+  return <RechartsXAxis {...props} />
 }
 XAxis.displayName = RechartsXAxis.displayName
 XAxis.defaultProps = {
@@ -121,8 +121,8 @@ XAxis.defaultProps = {
   interval: "equidistantPreserveStart",
 }
 
-export const YAxis = ({ ref, ...otherProps }: YAxisProps) => {
-  return <RechartsYAxis ref={ref as any} {...otherProps} />
+export const YAxis = (props: YAxisProps) => {
+  return <RechartsYAxis {...props} />
 }
 YAxis.displayName = RechartsYAxis.displayName
 YAxis.defaultProps = { ...RechartsYAxis.defaultProps, axisLine: false, tickLine: false, width: 40 }
