@@ -3,10 +3,10 @@
 **[Subframe](https://subframe.com) is the UI design tool for the AI era. Design with real components and receive production-ready React & Tailwind code. Our AI learns how you design, so you can design better & faster.**
 
 <p align="center">
-  <a href="https://join.slack.com/t/subframecommunity/shared_invite/zt-2gcv0nlow-qO_3pM3ZfNVGXZTWHVfwVw" style="text-decoration: none;">
+  <a href="https://join.slack.com/t/subframecommunity/shared_invite/zt-2gcv0nlow-qO_3pM3ZfNVGXZTWHVfwVw">
     <img src="https://img.shields.io/badge/Slack-join-8F87F7?logo=slack" alt="Slack" />    
   </a>
-  <a href="https://twitter.com/SubframeApp" style="text-decoration: none;">
+  <a href="https://twitter.com/SubframeApp">
     <img src="https://img.shields.io/twitter/url?url=https%3A%2F%2Ftwitter.com%2FSubframeApp&label=subframe" alt="X" />
   </a>
 </p>
