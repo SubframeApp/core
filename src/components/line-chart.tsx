@@ -15,7 +15,7 @@ import {
 } from "./charts"
 import styles from "./line-chart.module.css"
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface LineChartProps extends React.HTMLAttributes<HTMLDivElement> {
   categories: string[]
   colors?: string[]
   dark?: boolean
@@ -35,7 +35,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   margin?: { top: number; right: number; bottom: number; left: number }
 }
 
-export const LineChart = React.forwardRef<HTMLDivElement, Props>(function LineChart(
+export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(function LineChart(
   {
     categories,
     colors = DEFAULT_COLORS,

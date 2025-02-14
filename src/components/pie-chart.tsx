@@ -6,7 +6,7 @@ import { Cell, Pie, PieChart as RechartsPieChart } from "recharts"
 import { AutoSizedChartWrapper, ChartContextProvider, ChartLegend, ChartTooltip, DEFAULT_COLORS } from "./charts"
 import styles from "./pie-chart.module.css"
 
-interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface PieChartProps extends React.HTMLAttributes<HTMLDivElement> {
   category: string
   colors?: string[]
   dark?: boolean
@@ -20,7 +20,7 @@ interface RootProps extends React.HTMLAttributes<HTMLDivElement> {
   margin?: { top: number; right: number; bottom: number; left: number }
 }
 
-export const PieChart = React.forwardRef<HTMLDivElement, RootProps>(function PieChart(
+export const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(function PieChart(
   {
     className,
     category,
