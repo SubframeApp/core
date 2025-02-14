@@ -1,6 +1,7 @@
 "use client"
 
 import * as RadixDialog from "@radix-ui/react-dialog"
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden"
 import classNames from "classnames"
 import React, { useCallback } from "react"
 import styles from "./dialog.module.css"
@@ -8,7 +9,7 @@ import styles from "./dialog.module.css"
 interface RootProps extends RadixDialog.DialogProps, RadixDialog.DialogOverlayProps {}
 
 export const Root = React.forwardRef<HTMLDivElement, RootProps>(function Dialog(
-  { className, defaultOpen, open, onOpenChange, modal, ...otherProps },
+  { className, defaultOpen, open, onOpenChange, modal, title = "", ...otherProps },
   ref,
 ) {
   return (
@@ -16,6 +17,10 @@ export const Root = React.forwardRef<HTMLDivElement, RootProps>(function Dialog(
       <RadixDialog.Portal>
         <RadixDialog.Overlay ref={ref} asChild className={classNames(className, styles.root)} {...otherProps} />
       </RadixDialog.Portal>
+      {/* Silence Dialog.Title warning: https://github.com/radix-ui/primitives/blob/dae8ef4920b45f736e2574abf23676efab103645/packages/react/dialog/src/Dialog.tsx#L506 */}
+      <VisuallyHidden.Root asChild>
+        <RadixDialog.Title>{title}</RadixDialog.Title>
+      </VisuallyHidden.Root>
     </RadixDialog.Root>
   )
 })
@@ -26,7 +31,9 @@ interface ContentProps extends RadixDialog.DialogContentProps {
 }
 
 export const Content = React.forwardRef<HTMLDivElement, ContentProps>(function Content(
-  { onOpenAutoFocus, initialFocusRef, ...otherProps },
+  // Silence Dialog.Description warning:
+  // https://github.com/radix-ui/primitives/blob/dae8ef4920b45f736e2574abf23676efab103645/packages/react/dialog/src/Dialog.tsx#L532
+  { "aria-describedby": ariaDescribedBy = undefined, onOpenAutoFocus, initialFocusRef, ...otherProps },
   ref,
 ) {
   const onOpenAutoFocusCallback = useCallback(
@@ -40,7 +47,15 @@ export const Content = React.forwardRef<HTMLDivElement, ContentProps>(function C
     [initialFocusRef, onOpenAutoFocus],
   )
 
-  return <RadixDialog.Content ref={ref} asChild onOpenAutoFocus={onOpenAutoFocusCallback} {...otherProps} />
+  return (
+    <RadixDialog.Content
+      aria-describedby={ariaDescribedBy}
+      ref={ref}
+      asChild
+      onOpenAutoFocus={onOpenAutoFocusCallback}
+      {...otherProps}
+    />
+  )
 })
 
 export const Dialog = { Root, Content }

@@ -15,7 +15,7 @@ import {
   YAxis,
 } from "./charts"
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface AreaChartProps extends React.HTMLAttributes<HTMLDivElement> {
   categories: string[]
   colors?: string[]
   dark?: boolean
@@ -37,7 +37,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   stackOffset?: "expand" | "none" | "wiggle" | "silhouette"
 }
 
-export const AreaChart = React.forwardRef<HTMLDivElement, Props>(function AreaChart(
+export const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(function AreaChart(
   {
     categories,
     colors = DEFAULT_COLORS,

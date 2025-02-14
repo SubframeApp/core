@@ -13,7 +13,7 @@ import {
   YAxis,
 } from "./charts"
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface BarChartProps extends React.HTMLAttributes<HTMLDivElement> {
   categories: string[]
   colors?: string[]
   dark?: boolean
@@ -40,7 +40,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   reverseStackOrder?: boolean
 }
 
-export const BarChart = React.forwardRef<HTMLDivElement, Props>(function BarChart(
+export const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(function BarChart(
   {
     categories,
     colors = DEFAULT_COLORS,

@@ -9,11 +9,11 @@ import styles from "./icon.module.css"
 // If null, then does not render anything.
 export type IconName = keyof typeof Icons | "empty" | null
 
-interface Props extends React.HTMLAttributes<HTMLSpanElement> {
+export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
   name: IconName
 }
 
-export const Icon = React.forwardRef<HTMLSpanElement, Props>(function Icon(props, ref) {
+export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(function Icon(props, ref) {
   const { className, name, ...otherProps } = props
 
   if (name === null) {

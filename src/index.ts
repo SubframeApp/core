@@ -1,32 +1,108 @@
+/* eslint-disable simple-import-sort/imports */
+/**
+ * First import everything we need
+ */
 // direct re-exports of Radix
-export { RadioGroup, Checkbox, Popover, HoverCard, Tooltip, DropdownMenu, ContextMenu } from "./components/radix"
+import { RadioGroup, Checkbox, Popover, HoverCard, Tooltip, DropdownMenu, ContextMenu } from "./components/radix"
 
 // direct re-exports of non-Radix libraries
-export { Toaster, toast } from "sonner"
+import { Toaster, toast } from "sonner"
 
 // our components
-export * as Progress from "./components/progress"
-export * as Slider from "./components/slider"
-export * as Select from "./components/select"
-export { AreaChart } from "./components/area-chart"
-export { BarChart } from "./components/bar-chart"
-export { LineChart } from "./components/line-chart"
-export { PieChart } from "./components/pie-chart"
-export { CartesianGrid, XAxis, YAxis, ChartTooltip, ChartLegend, ChartLabel } from "./components/charts"
-export { Calendar } from "./components/calendar"
-export { Skeleton } from "./components/skeleton"
-export * as CopyToClipboard from "./components/copy-to-clipboard"
-export * as Switch from "./components/switch"
-export { Loader } from "./components/loader"
-export { Icon } from "./components/icon"
-export type { IconName } from "./components/icon"
-export * as Dialog from "./components/dialog"
-export * as Drawer from "./components/drawer"
-export * as FullScreenDialog from "./components/fullscreen-dialog"
-export * as ToggleGroup from "./components/toggle-group"
-export * as Collapsible from "./components/collapsible"
+import * as Progress from "./components/progress"
+import * as Slider from "./components/slider"
+import * as Select from "./components/select"
+import { AreaChart } from "./components/area-chart"
+import { BarChart } from "./components/bar-chart"
+import { LineChart } from "./components/line-chart"
+import { PieChart } from "./components/pie-chart"
+import { CartesianGrid, XAxis, YAxis, ChartTooltip, ChartLegend, ChartLabel } from "./components/charts"
+import { Calendar } from "./components/calendar"
+import { Skeleton } from "./components/skeleton"
+import * as CopyToClipboard from "./components/copy-to-clipboard"
+import * as Switch from "./components/switch"
+import { Loader } from "./components/loader"
+import { Icon } from "./components/icon"
+import * as Dialog from "./components/dialog"
+import * as Drawer from "./components/drawer"
+import * as FullScreenDialog from "./components/fullscreen-dialog"
+import * as ToggleGroup from "./components/toggle-group"
+import * as Collapsible from "./components/collapsible"
 
 // utilities
-export { Text } from "./utilities/text"
-export * as TypescriptHelpers from "./lib/typescript-helpers"
-export { twClassNames } from "./lib/tw-classnames"
+import { Text } from "./utilities/text"
+import * as TypescriptHelpers from "./lib/typescript-helpers"
+import { twClassNames } from "./lib/tw-classnames"
+
+/**
+ * Then re-export everything
+ */
+export { RadioGroup, Checkbox, Popover, HoverCard, Tooltip, DropdownMenu, ContextMenu }
+export { Toaster, toast }
+export { Progress }
+export { Slider }
+export { Select }
+export { AreaChart }
+export { BarChart }
+export { LineChart }
+export { PieChart }
+export { CartesianGrid, XAxis, YAxis, ChartTooltip, ChartLegend, ChartLabel }
+export { Calendar }
+export { Skeleton }
+export { CopyToClipboard }
+export { Switch }
+export { Loader }
+export { Icon }
+export type { IconName } from "./components/icon"
+export { Dialog }
+export { Drawer }
+export { FullScreenDialog }
+export { ToggleGroup }
+export { Collapsible }
+export { Text }
+export { TypescriptHelpers }
+export { twClassNames }
+
+/**
+ * Finally, create our default export using the imported values
+ */
+const SubframeCore = {
+  RadioGroup,
+  Checkbox,
+  Popover,
+  HoverCard,
+  Tooltip,
+  DropdownMenu,
+  ContextMenu,
+  Toaster,
+  toast,
+  Progress,
+  Slider,
+  Select,
+  AreaChart,
+  BarChart,
+  LineChart,
+  PieChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  ChartTooltip,
+  ChartLegend,
+  ChartLabel,
+  Calendar,
+  Skeleton,
+  CopyToClipboard,
+  Switch,
+  Loader,
+  Icon,
+  Dialog,
+  Drawer,
+  FullScreenDialog,
+  ToggleGroup,
+  Collapsible,
+  Text,
+  TypescriptHelpers,
+  twClassNames,
+}
+
+export default SubframeCore

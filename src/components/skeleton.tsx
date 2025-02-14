@@ -4,9 +4,9 @@ import classNames from "classnames"
 import React from "react"
 import styles from "./skeleton.module.css"
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Skeleton = React.forwardRef<HTMLDivElement, Props>(function Skeleton(props: Props, ref) {
+export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(function Skeleton(props, ref) {
   const { className, ...otherProps } = props
   return <div ref={ref} className={classNames(className, styles.root)} {...otherProps} />
 })
