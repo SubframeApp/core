@@ -1,6 +1,6 @@
 # Subframe
 
-**[Subframe](https://subframe.com) is the UI design tool for the AI era. Design with real components and receive production-ready React & Tailwind code. Our AI learns how you design, so you can design better & faster.**
+**[Subframe](https://subframe.com) is a UI design tool featuring a drag-and-drop visual editor, React + Tailwind code export, and AI-powered design and prototyping features.**
 
 <p align="center">
   <a href="https://join.slack.com/t/subframecommunity/shared_invite/zt-2gcv0nlow-qO_3pM3ZfNVGXZTWHVfwVw">
